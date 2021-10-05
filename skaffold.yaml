@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2beta23
+kind: Config
+build:
+  artifacts:
+    - image: larvis
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+      - kubernetes/*
+portForward:
+  - resourceType: deployment
+    resourceName: larvis
+    port: 8080
+    localPort: 8080
